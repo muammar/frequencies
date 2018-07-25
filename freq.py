@@ -8,38 +8,35 @@ output='opt_30.out'
 """
 Parameters
 """
-scalefreq=1.0
-scaleint=1.0
-omega=10.0
-wavemax=4000
+scalefreq = 1.0
+scaleint = 1.0
+omega = 10.0
+wavemax = 4000
 
 
-with open(output,'r') as infile:
-    frequencies=[]
+with open(output, 'r') as infile:
+    frequencies = []
     for lines in infile:
         if 'Frequencies' in lines:
-            preappend=re.findall("\d+.\d+",lines)
+            preappend = re.findall("\d+.\d+", lines)
             for i in preappend:
                 frequencies.append(i)
 
-with open(output,'r') as infile:
-    intensities=[]
+with open(output, 'r') as infile:
+    intensities = []
     for linesi in infile:
         if 'IR Inten' in linesi:
-            preappendi=re.findall("\d+.\d+",linesi)
+            preappendi = re.findall("\d+.\d+", linesi)
             for j in preappendi:
                 intensities.append(j)
 
-frequencies=[float(i) for i in frequencies]
-#print frequencies
-nvib=len(frequencies)
+frequencies = [float(i) for i in frequencies]
+nvib = len(frequencies)
 
-intensities=[float(i) for i in intensities]
-#print intensities
-#print len(intensities)
+intensities = [float(i) for i in intensities]
 
 for item in range(nvib):
-    print frequencies[item], intensities[item]
+    print(frequencies[item], intensities[item])
 
 
 exit()
@@ -48,7 +45,6 @@ scfreq=[]
 for idx,vib in enumerate(frequencies):
     scfreq.append(frequencies[idx]*scalefreq)
 
-#print scfreq
 
 # Different cases for omega values
 
